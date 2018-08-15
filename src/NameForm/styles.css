@@ -1,0 +1,10 @@
+.bg{
+  background-image: url("bg-01.jpg");
+}
+
+.label{
+  font-family: Poppins-Regular;
+    font-size: 15px;
+    color: #808080;
+    line-height: 1.2;
+}
