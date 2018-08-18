@@ -5,24 +5,6 @@ import Person from './NameForm/NameForm';
 import Winner from './Winner';
 
 class App extends Component {
-  componentDidMount(){
-  this.timer = setInterval(()=> this.getMovies(), 1000)
-  }
-
-  async getMovies(){
-
-   fetch('https://facebook.github.io/react-native/movies.json', {method: "GET"})
-    .then((response) => response.json())
-    .then((responseData) =>
-    {
-      //set your data here
-       console.log(responseData["title"]);
-    })
-    .catch((error) => {
-        console.error(error);
-    });
-
-  }
 
   render() {
     return (

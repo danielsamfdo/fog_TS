@@ -5,12 +5,12 @@ class NameForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      interest: false,
+      contactMe: "",
       firstName: "",
       lastName: "",
       phone: "",
       email: "",
-      numYears: ""
+      howLong: "0-1 year"
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -19,7 +19,7 @@ class NameForm extends Component {
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? (target.checked ? "1" : "0") : target.value;
     const name = target.name;
 
     this.setState({
@@ -29,11 +29,11 @@ class NameForm extends Component {
 
   handleSubmit(event) {
     console.log(this.state);
-    alert('The Form was submitted: ' + this.state);
+    alert('The Form was submitted, Thank you!');
     event.preventDefault();
-    fetch('/api/form-submit-url', {
+    fetch('http://localhost:16000/user', {
       method: 'POST',
-      body: this.state,
+      body: JSON.stringify(this.state),
     });
   }
 
@@ -73,7 +73,7 @@ class NameForm extends Component {
 
         <div className="validate-input" data-validate="Phone is required">
           <span className="label-input100">Phone:</span>
-          <input className="input100" type="text" name="phone" placeholder="Enter phone number" required  value={this.state.phone} onChange={this.handleInputChange}/>
+          <input className="input100" type="text" name="phone" placeholder="Enter phone number"   value={this.state.phone} onChange={this.handleInputChange}/>
           <span className="focus-input100"></span>
         </div>
 
@@ -85,8 +85,8 @@ class NameForm extends Component {
         <div className="wrap-input100 validate-input">
           <span className="label">I have been in the United States :</span>
 
-          <select name="numYears" className="input100" value={this.state.numYears} onChange={this.handleInputChange} required>
-            <option value="0 - 1 year">0 - 1 year</option>
+          <select name="howLong" className="" value={this.state.howLong} onChange={this.handleInputChange} required>
+            <option value="0-1 year">0 - 1 year</option>
             <option value="1-3 years">1-3 years</option>
             <option value="3-5 years">3-5 years</option>
             <option value="5+ years">5+ years</option>
@@ -96,15 +96,15 @@ class NameForm extends Component {
         </div>
 
 
-         <div className="wrap-input100 validate-input">
+         <div className="validate-input">
           <span className="label">Can be contacted </span>
 
-          <input type="checkbox" id="interest" name="interest" value="contacted" checked={this.state.interest} onChange={this.handleInputChange}/>
+          <input type="checkbox" id="interest" name="contactMe" value="contacted" checked={this.state.contactMe === "1" ? true : false} onChange={this.handleInputChange}/>
           <span className="label"> Yes </span>
         </div>
 
 
-        
+
 
 
         <div className="container-contact100-form-btn">

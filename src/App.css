@@ -30,3 +30,13 @@
 .brick{
   background-image: url("brick.jpg");
 }
+
+.blue{
+  background-image: url("blue.jpg");
+  color: white;
+}
+
+.big{
+  font-size: 100px;
+
+}
